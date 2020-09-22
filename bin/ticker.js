@@ -36,7 +36,7 @@ setInterval(() => {
     .put(new Date().toISOString(), function (ack) {
       // console.log('ack', ack)
     })
-}, 1000)
+}, 10)
 
 gun
   .get(data.user)

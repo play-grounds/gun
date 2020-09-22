@@ -8,8 +8,8 @@ var Gun = require('gun')
 
 // MODEL
 globalThis.data = {
-  peer: 'wss://melvincarvalho.com:3000/gun',
-  key: 'date',
+  peer: 'ws://localhost:8765/gun',
+  key: 'pic',
   user: 'test',
   password: 'test',
   value: new Date().toISOString()
