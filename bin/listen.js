@@ -26,14 +26,21 @@ data.value = argv.value || data.value
 var gun = Gun(data.peer)
 var user = gun.user()
 
-user.create(data.user, data.password)
-if (!user) {
-  user.auth(data.user, data.password)
+function login () {
+  user.create(data.user, data.password)
+  if (!user) {
+    user.auth(data.user, data.password)
+  }
 }
 
-gun
-  .get(data.user)
-  .get(data.key)
-  .on(data => {
-    console.log('data', data)
-  })
+function listen (key1, key2) {
+  gun
+    .get(key1)
+    .get(key2)
+    .on(data => {
+      console.log('data', data)
+    })
+}
+
+login()
+listen(data.user, data.key)
