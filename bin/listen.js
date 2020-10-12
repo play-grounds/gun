@@ -20,7 +20,8 @@ data.peer = argv.peer || data.peer
 data.key = argv.key || data.key
 data.user = argv.user || data.user
 data.password = argv.password || data.password
-data.value = argv.value || data.value
+
+console.log(data)
 
 // MAIN
 var gun = Gun(data.peer)

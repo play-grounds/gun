@@ -21,6 +21,7 @@ data.key = argv.key || data.key
 data.user = argv.user || data.user
 data.password = argv.password || data.password
 data.value = argv.value || data.value
+console.log(data)
 
 // MAIN
 var gun = Gun(data.peer)
@@ -38,8 +39,8 @@ gun
     console.log('ack', ack)
     var peers = gun.back('opt.peers')
     var peer = peers[data.peer]
-    if (peer.wire) {
+    if (peer && peer.wire) {
       peer.wire.close()
-      process.exit()
     }
+    process.exit()
   })
