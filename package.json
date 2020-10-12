@@ -1,6 +1,6 @@
 {
   "name": "playgrounds-gun",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "play gun",
   "main": "index.js",
   "bin": {
