@@ -5,6 +5,7 @@
 // IMPORTS
 var argv = require('minimist')(process.argv.slice(2))
 var Gun = require('gun')
+const { spawn } = require('child_process')
 
 // MODEL
 globalThis.data = {
@@ -20,6 +21,7 @@ data.peer = argv.peer || data.peer
 data.key = argv.key || data.key
 data.user = argv.user || data.user
 data.password = argv.password || data.password
+data.hook = argv.hook || data.hook
 
 console.log(data)
 
@@ -39,8 +41,12 @@ function listen (key1, key2) {
   gun
     .get(key1)
     .get(key2)
-    .on(data => {
-      console.log('data', data)
+    .on(d => {
+      console.log('data', d)
+      if (data.hook) {
+        console.log('hook', data.hook)
+        spawn(data.hook)
+      }
     })
 }
 
