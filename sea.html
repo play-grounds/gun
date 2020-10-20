@@ -6,6 +6,7 @@
   var SEA = Gun.SEA
   ;(async () => {
     var pair = await SEA.pair()
+    console.log('pair', pair)
     var enc = await SEA.encrypt('hello self', pair)
     var data = await SEA.sign(enc, pair)
     console.log(data)
