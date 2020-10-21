@@ -1,6 +1,10 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-<script>
+<script type="module">
+  import { h, html, render, Component } from 'https://cdn.skypack.dev/spux'
+
+  globalThis.spux = {}
+
   // var Gun = require('gun'); // in NodeJS
   // require('gun/sea');
   var SEA = Gun.SEA
@@ -25,5 +29,20 @@
     )
     await SEA.decrypt(enc, await SEA.secret(alice.epub, bob))
     // `.secret` is Elliptic-curve Diffie–Hellman
+    spux.pair = pair
+    renderAll()
   })()
+
+  function renderAll () {
+    render(
+      html`
+        <h1>Sea Demo</h1>
+        <pre>${JSON.stringify(spux.pair, null, 2)}</pre>
+      `,
+      document.body
+    )
+  }
+
+  // main
+  renderAll()
 </script>
