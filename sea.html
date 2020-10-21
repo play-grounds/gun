@@ -2,8 +2,15 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <script type="module">
   import { h, html, render, Component } from 'https://cdn.skypack.dev/spux'
+  import faker from 'https://cdn.skypack.dev/faker'
 
   globalThis.spux = {}
+
+  var randomName = faker.name.findName() // Rowan Nikolaus
+  var randomEmail = faker.internet.email() // Kassandra.Haley@erich.biz
+  var randomCard = faker.helpers.createCard() // random contact card containing many properties
+  var randomAvatar = faker.internet.avatar()
+  console.log(randomAvatar)
 
   // var Gun = require('gun'); // in NodeJS
   // require('gun/sea');
@@ -36,7 +43,11 @@
   function renderAll () {
     render(
       html`
-        <h1>Sea Demo</h1>
+        <h1>${randomName}</h1>
+        <img src="${randomAvatar}" />
+        <h2>${randomCard.username}</h2>
+        <h2>Keys</h2>
+
         <pre>${JSON.stringify(spux.pair, null, 2)}</pre>
       `,
       document.body
