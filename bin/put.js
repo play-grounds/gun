@@ -15,6 +15,17 @@ globalThis.data = {
   value: new Date().toISOString()
 }
 
+// FUNCTIONS
+function stringOrJson (str) {
+  var json
+  try {
+    json = JSON.parse(str)
+    return json
+  } catch (e) {
+    return str
+  }
+}
+
 // INIT
 data.peer = argv.peer || data.peer
 data.key = argv.key || data.key
@@ -35,7 +46,7 @@ if (!user) {
 gun
   .get(data.user)
   .get(data.key)
-  .put(data.value, function (ack) {
+  .put(stringOrJson(data.value), function (ack) {
     console.log('ack', ack)
     var peers = gun.back('opt.peers')
     var peer = peers[data.peer]
